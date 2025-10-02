@@ -14,14 +14,26 @@
     "expo-auth-session": "~7.0.8",
     "expo-status-bar": "~3.0.8",
     "firebase": "^12.3.0",
+    "nativewind": "^4.1.23",
     "react": "19.1.0",
     "react-native": "0.81.4",
-    "react-native-dotenv": "^3.4.11"
+    "react-native-dotenv": "^3.4.11",
+    "react-native-reanimated": "~3.17.4",
+    "react-native-safe-area-context": "5.4.0"
   },
   "private": true,
   "devDependencies": {
+    "@babel/core": "^7.20.0",
     "@tailwindcss/postcss": "^4.1.13",
+    "autoprefixer": "^10.4.21",
+    "babel-preset-expo": "^54.0.3",
     "postcss": "^8.5.6",
-    "tailwindcss": "^4.1.13"
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "tailwindcss": "^3.4.17"
+  },
+  "overrides": {
+    "nativewind": {
+      "react-native-css-interop": "0.1.22"
+    }
   }
 }

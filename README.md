@@ -2,7 +2,7 @@
 
 # Usage
 
-This app uses Expo, React Native, and Firebase. After installing/creating the environment file, run
+This app uses Expo, React Native, Native Wind, and Firebase. After installing/creating the environment file, run
 
 ```
 npx expo start

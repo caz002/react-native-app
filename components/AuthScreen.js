@@ -1,5 +1,11 @@
-import React from "react";
-import { View, Text, TouchableOpacity } from "react-native";
+import React, { useState } from "react";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  SafeAreaView,
+} from "react-native";
 import { auth } from "../firebase";
 
 import {
@@ -7,7 +13,6 @@ import {
   signInWithEmailAndPassword,
 } from "firebase/auth";
 import { getFirestore, doc, setDoc } from "firebase/firestore";
-import { TextInput } from "react-native/types_generated/index";
 
 const db = getFirestore();
 
@@ -23,10 +28,10 @@ export default function AuthScreen() {
     setErrorMsg("");
   };
   return (
-    <SafeAreaView>
-      <View className="align-center mb-20">
-        <Text>Cafe Finder</Text>
-      </View>
+    <View className="flex flex-col flex-1 items-center justify-center">
+      <Text className="text-4xl font-bold text-blue-500">
+        Welcome to CafeFinder!
+      </Text>
       {/* Input Text*/}
       {isLogin && (
         <TextInput
@@ -66,6 +71,6 @@ export default function AuthScreen() {
           </Text>
         </TouchableOpacity>
       </View>
-    </SafeAreaView>
+    </View>
   );
 }
