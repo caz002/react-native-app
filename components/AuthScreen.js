@@ -15,6 +15,8 @@ import {
 import { getFirestore, doc, setDoc } from "firebase/firestore";
 
 const db = getFirestore();
+// Example profile colors (ensure you have corresponding images like profile_red.png, etc.)
+const profileColors = ["blue", "red"];
 
 export default function AuthScreen() {
   const [email, setEmail] = useState("");
@@ -26,6 +28,14 @@ export default function AuthScreen() {
   // functions
   const signup = async () => {
     setErrorMsg("");
+    if (!email || !password || !username) {
+      setErrorMsg("Please fill out all fields");
+      return;
+    }
+
+    // logic for profile pic
+    const randomColor = profileColors[randomIndex];
+    const profilePic = `profile_${randomColor}.png`;
   };
   return (
     <View className="flex flex-col flex-1 items-center justify-center">
