@@ -26,6 +26,7 @@ export default function AuthScreen() {
   const [isLogin, setIsLogin] = useState("");
 
   // functions
+  // Sign Up
   const signup = async () => {
     setErrorMsg("");
     if (!email || !password || !username) {
@@ -34,8 +35,47 @@ export default function AuthScreen() {
     }
 
     // logic for profile pic
+    const randomIndex = Math.floor(Math.random() * profileColors.length);
     const randomColor = profileColors[randomIndex];
     const profilePic = `profile_${randomColor}.png`;
+
+    try {
+      const userCredential = await createUserWithEmailAndPassword(
+        auth,
+        email,
+        password
+      );
+
+      const uid = userCredential.user.uid;
+      await setDoc(doc(db, "users", uid), {
+        name: username,
+        email,
+        profilePic,
+        friends: [],
+        friendRequests: [],
+        sentRequests: [],
+        createdAt: new Date(),
+      });
+    } catch (error) {
+      console.log("Error during sign up:", error);
+      setErrorMsg(error.message);
+    }
+  };
+
+  // Log In
+  const login = async () => {
+    setErrorMsg("");
+
+    if (!email || !password) {
+      setErrorMsg("Please enter your email and password");
+      return;
+    }
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+    } catch (error) {
+      console.log("Error during login:", error);
+      setErrorMsg(error.message);
+    }
   };
   return (
     <View className="flex flex-col flex-1 items-center justify-center">
@@ -43,7 +83,7 @@ export default function AuthScreen() {
         Welcome to CafeFinder!
       </Text>
       {/* Input Text*/}
-      {isLogin && (
+      {!isLogin && (
         <TextInput
           placeholder="Username"
           value={username}
